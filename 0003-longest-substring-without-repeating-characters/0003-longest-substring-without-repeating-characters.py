@@ -39,6 +39,10 @@ class Solution:
   
         max_val = max(store_list, key=lambda x: len(x))
     
+    
+        # *don't like this approach of more code for "" and " "..
+        # need simpler solution 
+        
         if max_val == " ":
             return 1
         else:
@@ -46,11 +50,6 @@ class Solution:
             return max_length
 
 '''
-        #(return 0 bc get value error is max() is ran on empty list)
-        if not store_list:
-            return 0
-        else:
-            return max_length
        
 # ohh so in this code: "pwwkew" is outputting "pwke" as one of the substrings
 # returning 4 instead of what should be 3
