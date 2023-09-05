@@ -6,31 +6,24 @@ class Solution:
 #3 1 character also qualifies
 #4 get the max length element in store_list
 
+    # pwwkew is returning pwke
+    # so when it reaches pww, your while loop does not end up breaking,
+    # it just says "in store_val" so continue through "j iteration for loop"
+    # basically need a way to break out of the j for loop
+    # OR combine the for loop with the while loop and then append
+    
     @staticmethod
     def lengthOfLongestSubstring(s: str):
-        
-        max_length = 0
-
-        for i in range(len(s)):
-            store_val = s[i]
-            j = i + 1
-
-            while j < len(s) and s[j] not in store_val:
-                store_val += s[j]
-                j += 1
-
-            max_length = max(max_length, len(store_val))
-
-        return max_length
-    
-'''
         store_list = []
         
-        for i in range(len(s)-1):
+        for i in range(len(s)):
             
             store_val = s[i]
             
-            for j in range(i+1, len(s)-1):
+            for j in range(i+1, len(s)):
+                
+                if s[j] in store_val: #(pwke fix)
+                    break #(pwke fix)
                 
                 #add onto store_val until we reach a match
                 while s[j] not in store_val:
@@ -38,18 +31,31 @@ class Solution:
                 
             store_list.append(store_val)
                 
-        return store_list
+        #return store_list (testing purposes)
+        
+        #handles case if store_list is empty & program will break here
+        if not store_list:
+            return 0
+  
+        max_val = max(store_list, key=lambda x: len(x))
     
-        #max_val = max(store_list, key=lambda x: len(x))
-        #max_length = len(max_val)
-        
-        #return max_length
-        
+        if max_val == " ":
+            return 1
+        else:
+            max_length = len(max_val)
+            return max_length
+
+'''
+        #(return 0 bc get value error is max() is ran on empty list)
+        if not store_list:
+            return 0
+        else:
+            return max_length
+       
 # ohh so in this code: "pwwkew" is outputting "pwke" as one of the substrings
 # returning 4 instead of what should be 3
 # basically my program here is not going in order and breaking in between
 # it keeps on going to get all the unique chars loll.
-# use an AND statement to say 
 
 
 #s = input("s = ") ... oh in leetcode you don't specify this
